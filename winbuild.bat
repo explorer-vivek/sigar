@@ -24,7 +24,7 @@ cmake -G %GENERATOR% -DBUILD_NUMBER=%BUILD_NUMBER% -DCMAKE_INSTALL_PREFIX=%INST_
 @IF NOT %GENERATOR%=="NMake Makefiles" (GOTO VS08BUILD)
 nmake
 IF %ERRORLEVEL% NEQ 0 EXIT /B %ERRORLEVEL%
-cp build-src/sigar.dll build-tests/
+copy build-src\sigar.dll build-tests\
 nmake test
 IF %ERRORLEVEL% NEQ 0 EXIT /B %ERRORLEVEL% 
 nmake install
