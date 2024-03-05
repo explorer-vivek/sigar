@@ -39,7 +39,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
-#if defined(_MSVC_VER)
+#if defined(_MSC_VER)
 #include <WinError.h>
 #endif
 
@@ -127,7 +127,7 @@ TEST(test_sigar_proc_list_get) {
 			switch (ret) {
 			case EPERM:
 			case ESRCH:
-#if (defined(_MSVC_VER))
+#if (defined(_MSC_VER))
 			/* OpenProcess() may return ERROR_ACCESS_DENIED */
 			case ERROR_ACCESS_DENIED:
 #endif
