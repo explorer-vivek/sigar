@@ -2,6 +2,8 @@
 @rem  $%ENDLICENSE%$
 @echo "Run this from a shell started with the Visual Studio Build environment set!"
 
+@IF NOT DEFINED BUILD_SHARED_LIBS SET BUILD_SHARED_LIBS=OFF
+
 @IF DEFINED GENERATOR (GOTO GENERAL_CONF)
 @rem Sane default is VS2005, but maybe not what we really want...
 @SET GENERATOR="Visual Studio 8 2005"
@@ -19,7 +21,7 @@
 
 :CMAKE
 @rem make sure that /D NDEBUG isn't set as it disables all the assert()ions in the testcase
-cmake -G %GENERATOR% -DBUILD_NUMBER=%BUILD_NUMBER% -DCMAKE_INSTALL_PREFIX=%INST_PREFIX% -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_C_FLAGS_RELWITHDEBINFO:STRING="/MD /Zi /O2 /Ob1" "%~dp0"
+cmake -G %GENERATOR% -DBUILD_NUMBER=%BUILD_NUMBER% -DCMAKE_INSTALL_PREFIX=%INST_PREFIX% -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_C_FLAGS_RELWITHDEBINFO:STRING="/MD /Zi /O2 /Ob1" -DBUILD_SHARED_LIBS=%BUILD_SHARED_LIBS% "%~dp0"
 
 @IF NOT %GENERATOR%=="NMake Makefiles" (GOTO VS08BUILD)
 nmake
